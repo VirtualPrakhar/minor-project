@@ -34,7 +34,7 @@ function EditorPage() {
         </div>
         {/* EDITOR */}
         <div className="col-md-10 text-light d-flex flex-column h-100">
-          Editor
+          <Editor /> 
         </div>
       </div>
     </div>
