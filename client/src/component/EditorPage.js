@@ -19,9 +19,9 @@ function EditorPage() {
           <hr style={{marginTop:"-3rem"}} />
           {/* Client List Container */}
           <div className="d-flex flex-column overflow-auto">
-            {clients.map((client) => {
+            {clients.map((client) => (
               <Client key={client.socketId} username={client.username}/>
-            })}
+            ))}
           </div>
             {/* Buttons */}
             <div className="mt-auto">

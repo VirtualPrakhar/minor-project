@@ -10,9 +10,7 @@ function Client({username}) {
             round="14px"
             className="mr-3"    
         />
-        <span>
-            
-        </span>
+        <span className="mx-2">{username.toString()}</span>
     </div>
   )
 }
