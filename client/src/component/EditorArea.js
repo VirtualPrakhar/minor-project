@@ -1,17 +1,16 @@
 import React, { useEffect, useRef} from "react";
-
+import Codemirror from "codemirror";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/theme/dracula.css";
 import "codemirror/addon/edit/closetag";
 import "codemirror/addon/edit/closebrackets";
 import "codemirror/lib/codemirror";
-import Codemirror from "codemirror";
 
 function EditorArea(){
     const editorRef = useRef(null);
     useEffect(() => {
         const init = async () =>{
-            const editorArea = CodeMirror.fromTextArea(
+            const editor = Codemirror.fromTextArea(
                 document.getElementById("realTimeEditor"),
                 {
                     mode: {name: "javascript", json: true},
@@ -21,7 +20,7 @@ function EditorArea(){
                     lineNumbers: true,
                 }
             );
-            editorArea.setSize(null, '100%');
+            editor.setSize(null, '100%');
         };
         init();
     },[]);
