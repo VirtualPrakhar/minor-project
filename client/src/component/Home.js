@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import {v4 as uuid} from "uuid";
 
 function Home() {
+    const [roomId, setRoomId] =useState("");
+    const [username, setUsername] =useState("");
+
+    const generateRoomId =(e) =>{
+        e.preventDefault();
+        const id = uuid();
+        setRoomId(id);
+    };
+
   return (
     <div className="container-fluid">
         <div className="row justify-content-center align-items-center min-vh-100">
@@ -15,7 +25,9 @@ function Home() {
                         />
                         <h4 className="text-light">Enter Room ID</h4>
                         <div className="form-group">
-                            <input 
+                            <input
+                                value={roomId}
+                                onChange={(e) => setRoomId(e.target.value)}
                                 type="text" 
                                 className="form-control mb-2" 
                                 placeholder="ROOM ID" 
@@ -31,7 +43,12 @@ function Home() {
                         <button className="btn btn-success btn-lg btn-block">JOIN</button>
                         <p className="mt-3 text-light">
                             Don't have a Room ID?{" "} 
-                            <span className="text-success p-2" style={{cursor:"pointer"}}>Create New Room</span>
+                            <span 
+                                className="text-success p-2" 
+                                style={{cursor:"pointer"}}
+                                onClick={generateRoomId}
+                            >
+                                Create New Room</span>
                         </p>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ function EditorArea(){
                     lineNumbers: true,
                 }
             );
-            editor.setSize(null, '100%');
+            editor.setSize(null,"100%");
         };
         init();
     },[]);
