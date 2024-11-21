@@ -2,23 +2,40 @@ import React, {useEffect, useRef,useState } from "react";
 import Client from "./Client";
 import EditorArea from "./EditorArea";
 import { initSocket } from "../socket";
+import { useNavigate, useLocation , useParams, Navigate} from "react-router-dom";
 
 function EditorPage() {
   const socketRef = useRef(null);
+  const location =useLocation();
+  const {roomId} = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     const init =async() =>{
       socketRef.current =await initSocket();
+      socketRef.current.on('connect_error', (err) => handleError(err));
+      socketRef.current.on('connect_failed', (err) => handleError(err));
+      
+      const handleError =(e) => {
+        console.log('socket error =>',e);
+        toast.error("Socket Connection Failed");
+        navigate('/');
+      };
       socketRef.current.emit('join',{
         roomId,
-        username:
-      })
-    }
+        username: location.state?.username,
+      });
+    };
     init();
-  },[])
+  },[]);
   const [clients, setClients] = useState([
-    {socketId: 1, username: "Pratyush"},
-    {socketId: 2, username: "Pooja"},
-  ])
+    {socketId: 1, username: "Ram"},
+    {socketId: 2, username: "Seeta"},
+  ]);
+
+  if(!location.state){
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="container-fluid vh-100">
       <div className="row h-100">
