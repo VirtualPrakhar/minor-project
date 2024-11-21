@@ -3,6 +3,7 @@ import Client from "./Client";
 import EditorArea from "./EditorArea";
 import { initSocket } from "../socket";
 import { useNavigate, useLocation , useParams, Navigate} from "react-router-dom";
+import {toast} from "react-hot-toast";
 
 function EditorPage() {
   const socketRef = useRef(null);
